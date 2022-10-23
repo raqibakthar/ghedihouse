@@ -1,0 +1,23 @@
+<!-- ========================= FOOTER ========================= -->
+<footer class="section-footer border-top padding-y" test="blah">
+	<div class="container">
+		<p class="float-md-right"> 
+			&copy Copyright 2022 All rights reserved
+		</p>
+		<p>
+			<h6><span class="text-success">ghedi</span>house</h6>
+		</p>
+	</div><!-- //container -->
+</footer>
+<!-- ========================= FOOTER END // ========================= -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+
+		$('.thumb a').click(function(e){
+			e.preventDefault();
+			$('.mainImage img').attr('src',$(this).attr("href"));
+		})
+	})
+</script> 

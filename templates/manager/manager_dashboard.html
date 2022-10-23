@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block  content %}
+
+
+<section class="section-conten padding-y bg">
+    {% include 'includes/alerts.html' %}
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-3">
+                <!--   SIDEBAR   -->
+                <ul class="list-group">
+                  <a class="list-group-item" href=""> <b class="text-success">Dashboard</b></a>
+                  <a class="list-group-item" href=""><b class="text-success"> User Managemen</b></a>
+                  <a class="list-group-item" href=""><b class="text-success">Product Management</b></a>
+                  <a class="list-group-item" href=""><b class="text-success">Category Management</b></a>
+                  <a class="list-group-item" href=""><b class="text-success">Order Managemen</b></a>
+                  <a class="list-group-item" href=""><b class="text-success">Variation Management</b></a>
+                  <a class="list-group-item" href=""><b class="text-success">My Orders</b></a>
+                  <a class="list-group-item" href=""><b class='text-success'>Change Password</b></a>
+                </ul>
+                <br />
+                <a class="btn btn-light btn-block" href=""> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a>
+                <!--   SIDEBAR .//END   -->
+            </aside>
+        <main class="col-md-9">
+            <article class="card">
+            <header class="card-header">
+                <strong class="d-inline-block mr-3 text-success h4">Dashboard</strong>
+                
+            </header>
+            <div class="card-body">
+                <div class="row"> 
+                     <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <center>
+                                <center><i class='fas fa-shipping-fast' style='font-size:30px;color:#05a318'></i></center><br> 
+                                <h5 class="card-title">Total Orders</h5>
+                                <h4>{{orders_count}}</h4>
+                                <a href="{% url 'my_orders' %}"><strong class="text-success">View Orders</strong></a>
+                                </center>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <center><i class='fas fa-user-circle' style='font-size:48px;color:#05a318'></i></center><br>
+                                <center>
+                                <h5>{{user.first_name}} {{user.last_name}}</h5>
+                                <b>{{user.email}}</b><br>
+                                <b>{{user.phone_number}}</b>
+                                </center>
+                            </div>
+                        </div>
+                     </div>
+                </div> <!-- row.// -->
+            </div> <!-- card-body .// -->
+             
+            </article> <!-- order-group.// --> 
+        </main>
+    </div> <!-- row.// -->
+    </div>
+    
+    
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+{% endblock  %}
