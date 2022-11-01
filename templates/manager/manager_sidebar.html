@@ -1,0 +1,15 @@
+<aside class="col-md-3">
+    <!--   SIDEBAR   -->
+    <ul class="list-group">
+      <a class="list-group-item" href="{% url 'manager_dashboard' %}"> <b class="text-success">Dashboard</b></a>
+      <a class="list-group-item" href="{% url 'manage_user' %}"><b class="text-success"> User Management</b></a>
+      <a class="list-group-item" href="{% url 'manage_product' %}"><b class="text-success">Product Management</b></a>
+      <a class="list-group-item" href="{% url 'manage_order' %}"><b class="text-success">Order Management</b></a>
+      <a class="list-group-item" href="{% url 'manage_variation' %}"><b class="text-success">Variation Management</b></a>
+      <a class="list-group-item" href="{% url 'admin_orders' %}"><b class="text-success">My Orders</b></a>
+      <a class="list-group-item" href="{% url 'admin_change_password' %}"><b class='text-success'>Change Password</b></a>
+    </ul>
+    <br />
+    <a class="btn btn-outline-danger btn-block" href="{% url 'manager_logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+    <!--   SIDEBAR .//END   -->
+</aside>

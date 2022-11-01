@@ -1,0 +1,110 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content mt-3 ">
+    <div class="container">
+        <div class="mt-5 mb-2"><h3 class="text-center"><span class="text-success">Product</span>Management</h3></div>
+  <div class="row">
+  <div class="container">
+    {% comment %} <h1 class="text-center h2 mb-4">Manage Products</h1> {% endcomment %}
+    <div class="d-flex mb-3 justify-content-end">
+      <div class="d-flex mb-3 justify-content-end">
+        <div class="">
+            <a href="{% url 'add_product' %}" class="btn btn-success">Add Products</a>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+      <aside class="col-md-3">
+        <!--   SIDEBAR   -->
+        <ul class="list-group">
+            <a class="list-group-item" href="{% url 'manager_dashboard' %}"> <b class="text-success">Dashboard</b></a>
+            <a class="list-group-item" href="{% url 'manage_user' %}"><b class="text-success"> User Management</b></a>
+            <a class="list-group-item" href="{% url 'manage_product' %}"><b class="text-success">Product Management</b></a>
+            <a class="list-group-item" href="{% url 'manage_order' %}"><b class="text-success">Order Management</b></a>
+            <a class="list-group-item" href="{% url 'manage_variation' %}"><b class="text-success">Variation Management</b></a>
+            <a class="list-group-item" href="{% url 'admin_orders' %}"><b class="text-success">My Orders</b></a>
+            <a class="list-group-item" href="{% url 'admin_change_password' %}"><b class='text-success'>Change Password</b></a>
+          </ul>
+        <br />
+        <a class="btn btn-outline-danger btn-block" href="{% url 'manager_logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a>
+        <!--   SIDEBAR .//END   -->
+      </aside>
+      <main class="col-md-9 card">
+        <div class="mt-2">
+            <form action="{% url 'manage_product' %}" class="search" method="POST">
+                {% csrf_token %} 
+                <div class="input-group w-100 ">
+                  <input type="text" class="form-control border-success"  style="width: 60%" placeholder="Search" name="keyword" />
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-dark ml-1" type="submit">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+            </form>
+        </div>
+        
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Price</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Available</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+            <tr>
+              <th scope="row">{{ product.id }}</th>
+              <td><a href="{% url 'edit_product' product.id %}" class="text-success">{{ product.product_name }}</a></td>
+              <td>{{ product.category }}</td>
+              <td>₹{{ product.price }}</td>
+              <td>{{ product.stock }}</td>
+              <td>
+                {% if product.is_available %}
+                <i class="fas fa-check-circle" style="color: #28a745"></i>
+                {% else %}
+                <i class="fas fa-times-circle" style="color: #c21010"></i>
+                {% endif %}
+              </td>
+              <td><a href="{% url 'delete_product' product.id %}" class="btn btn-sm btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!-- order-group.// -->
+        <div class="container">
+          <nav class="mt-4" aria-label="Page navigation sample">
+            {% if products.has_other_pages %}
+            <ul class="pagination">
+              {% if products.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a></li>
+              {% else %}
+              <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+              {% endif %} {% for page_number in products.paginator.page_range %} {% if products.number == page_number %}
+              <li class="page-item active"><a class="page-link" href="#">{{ page_number }}</a></li>
+              {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+              {% endif %} {% endfor %} {% if products.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Next</a></li>
+              {% else %}
+              <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </nav>
+        </div>
+      </main>
+    </div>
+    <!-- row.// -->
+  </div>
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock content %}

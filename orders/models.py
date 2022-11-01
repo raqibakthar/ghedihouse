@@ -18,11 +18,12 @@ class Order(models.Model):
 
     STATUS=(
 
-        ('New','New'),
+        ('Pending','Pending'),
         ('Accepted','Accepted'),
         ('Completed','Completed'),
         ('Cancelled','Cancelled'),
     )
+    
     user = models.ForeignKey(Account, on_delete = models.SET_NULL,null=True)
     payment = models.ForeignKey(Payment,on_delete = models.SET_NULL,blank = True,null=True)
     order_number = models.CharField(max_length=50)
@@ -37,7 +38,7 @@ class Order(models.Model):
     city = models.CharField(max_length=50)
     order_total = models.FloatField()
     tax = models.FloatField()
-    status = models.CharField(max_length=10,choices=STATUS,default='New')
+    status = models.CharField(max_length=10,choices=STATUS,default='Pending')
     ip = models.CharField(max_length=50,blank=True)
     is_ordered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add = True)

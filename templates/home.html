@@ -4,19 +4,23 @@
 
 {% block content %}
 <!-- ========================= SECTION PAGETOP ========================= -->
-{% comment %} <section class="section-pagetop bg">
+<section class="section-pagetop">
 <div class="container">
 	<div class="intro-banner-wrap">
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		<div>
 		  <div class="carousel-inner">
 			<div class="carousel-item active">
-			  <img class="d-block w-100" src="{% static 'images/banners/2.jpg' %}" alt="First slide">
+			  <img class="d-block w-100" src="{% static 'images/banners/banner1.jpg' %}" alt="First slide">
+			  <center><a href="{% url 'store' %}" class="btn btn-dark mt-2">Shop Now</a></center>
 			</div>
 			<div class="carousel-item">
-			  <img class="d-block w-100" src="{% static 'images/banners/1.jpg' %}" alt="Second slide">
+			  <img class="d-block w-100" src="{% static 'images/banners/banner2.jpg' %}" alt="Second slide">
+			  <center><a href="{% url 'store' %}" class="btn btn-dark mt-2">Shop Now</a></center>
 			</div>
 			<div class="carousel-item">
-			  <img class="d-block w-100" src="{% static 'images/banners/1.jpg' %}" alt="Third slide">
+			  <img class="d-block w-100" src="{% static 'images/banners/banner3.jpg' %}" alt="Third slide">
+			  <center><a href="{% url 'store' %}" class="btn btn-dark mt-2">Shop Now</a></center>
 			</div>
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -28,9 +32,10 @@
 			<span class="sr-only">Next</span>
 		  </a>
 		</div>
+		</div>
 	  </div>
 </div> <!-- container //  --> 
-</section> {% endcomment %}
+</section>
 <!-- ========================= SECTION INTRO END// ========================= -->
 
 <!-- ========================= SECTION CONTENT ========================= -->
@@ -43,7 +48,7 @@
 
 <header class="border-bottom mb-4 pb-3">
 		<div class="form-inline d-flex justify-content-center">
-			<h4><span class="text-success">Popular</span>Watches</h4>
+			<h4><span class="text-success">New</span>Arrivals</h4>
 		</div>
 		<div>
 			<center><a href="{% url 'store' %}" class="btn  btn-outline-success ml-2 mb-2"><span class="text-dark">Check Now</span></a></center>

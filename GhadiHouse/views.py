@@ -5,7 +5,7 @@ from store.models import Product,ReviewRating
 
 # HOMEPAGE
 def home_page(request):
-    products = Product.objects.all().filter(is_available=True).order_by('-created_date')
+    products = Product.objects.all().filter(is_available=True).order_by('-created_date')[:9]
     for product in products:
         reviews = ReviewRating.objects.filter(product_id = product.id,status=True)
     context = {

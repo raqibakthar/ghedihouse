@@ -11,16 +11,16 @@
     <section class="header-main border-bottom">
         <div class="container">
     <div class="row align-items-center">
-        <div class=" col-lg-2 col-md-3 col-6">
+        <div class=" col-lg-2 col-md-3 col-6 container">
             
-               <a href="{% url 'home' %}" ><h2 class="logo text-success">ghedi<span class="text-dark">house</span></h2></a>
-               
+               <div class="d-flex justify-content-end"><i class="fa fa-clock"></i><a href="{% url 'home' %}"style="font-family: 'Stick No Bills', sans-serif;"  ><h1 class="logo text-success">ghedi<span class="text-dark">house</span></h1></a></div>
+              
              <!-- brand-wrap.// -->
         </div>
         <div class="col-lg col-sm col-md col-6 flex-grow-0">
             <div class="category-wrap dropdown d-inline-block float-right">
                 <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown"> 
-                    <i class="fa fa-bars"></i> All Styles 
+                    <i class="fa fa-clock"></i> Types 
                 </button>
                 <div class="dropdown-menu">
                     {% for category in links %}
@@ -43,30 +43,40 @@
                 </div>
             </form> <!-- search-wrap .end// -->
         </div> <!-- col.// -->
-        <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
-                    <div class="d-flex justify-content-end mb-3 mb-lg-0">
-                        {% if user.id is None %}
-                        <div class="widget-header ">
-                            <small class="title text-muted">Welcome to <span class="text-success">ghedi</span><span class="text-dark">house</span></small>
-                            <div> 
-                                <a href="{% url 'login'  %}" class="signin text-success">Sign in</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'register'%}"> Register</a>
-                            </div>
-                        </div>
-                        {% else %}
-                        <div class="widget-header ">
-                            <small class="title text-muted">Welcome <span class="text-success">{{ user.first_name }}</span></small>
-                            <div> 
-                                <a href="{% url 'dashboard'  %}" class="signin text-success">Dashboard</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'logout'%}">Logout</a>
-                            </div>
-                        </div>
-                        {% endif %}
-                        <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
-                            <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-                            <span class="badge badge-pill badge-danger notify">{{cart_count}}</span>
-                        </a>
-                    </div> <!-- widgets-wrap.// -->
+        <div class="col-lg-3 col-sm-6 col-12 d-flex justify-content-center order-2 order-lg-3">
+            <div class="d-flex justify-content-end mb-3 mb-lg-0">
+              {% if request.user.is_superadmin %}
+              <div class="widget-header">
+                <small class="title text-muted">Welcome <span style="font-size: 12px !important; font-weight: 700; text-transform: capitalize" class="text-success">{{ request.user.username }}</span></small>
+                <div>
+                  <a href="{% url 'manager_dashboard' %}" class="text-success">Dashboard</a> <span class="dark-transp"> | </span>
+                  <a href="{% url 'manager_logout' %}"> Sign out</a>
+                </div>
+              </div>
+  
+              {% elif request.user.is_authenticated %}
+              <div class="widget-header">
+                <small class="title text-muted">Welcome <span style="font-size: 12px !important; font-weight: 700; text-transform: capitalize" class="text-success">{{ request.user.username }}</span></small>
+                <div>
+                  <a href="{% url 'dashboard' %}" class="text-success">Dashboard</a> <span class="dark-transp"> | </span>
+                  <a href="{% url 'logout' %}"> Sign out</a>
+                </div>
+              </div>
+  
+              {% else %}
+              <div class="widget-header">
+                <small class="title text-muted">Welcome <span style="font-size: 12px !important; font-weight: 700; text-transform: capitalize" class="text-success">guest </span></small>
+                <div>
+                  <a href="{% url 'login' %}" class="text-success">Sign in</a> <span class="dark-transp"> | </span>
+                  <a href="{% url 'register' %}"> Sign up</a>
+                </div>
+              </div>
+              {% endif %}
+              <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
+                <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+                <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
+              </a>
+            </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->
     </div> <!-- row.// -->
         </div> <!-- container.// -->
